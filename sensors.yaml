@@ -1,0 +1,23 @@
+  - platform: mqtt
+    name: "weather_alert_type"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.type }}"
+    qos: 1
+
+  - platform: mqtt
+    name: "weather_alert_level"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.level }}"
+    qos: 1
+
+  - platform: mqtt
+    name: "weather_alert_info"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.event }}"
+    qos: 1
+
+  - platform: mqtt
+    name: "weather_alert_advanced_info"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.description }}"
+    qos: 1
