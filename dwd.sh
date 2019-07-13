@@ -6,8 +6,10 @@ data=$(curl -s $url | cut -d '(' -f 2- | jq --arg b "$bundesland" --arg k "$krei
 
 if [ -z "$data" ]
 then
-        data='{"type": 0, "level": 0, "event": "Keine Meldung", "state": '"$bundesland"', "regionName": '"$kreis"', "headline": "Keine Meldung", "description": "Keine Meldung."}'
+        data='{"type": 0, "level": 0, "event": "Keine Meldung", "state": "'"$bundesland"'", "regionName": "'"$kreis"'", "headline": "Keine Meldung", "description": "Keine Meldung."}'
         mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$data" -r
+        echo $data >> /home/homeassistant/dwd/dwd.log
 else
         mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$data" -r
+        echo $data >> /home/homeassistant/dwd/dwd.log
 fi
