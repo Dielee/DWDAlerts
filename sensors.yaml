@@ -33,3 +33,4 @@
     state_topic: "weather/alerts"
     value_template: "{{ value_json.description }}"
     qos: 1
+  
