@@ -6,7 +6,8 @@ kreis="Kreis Wesel"
 fixtime=7200 #Difference to UTC in seconds
 
 # Fetch data from DWD
-data=$(curl -s $url | cut -d '(' -f 2- | jq --arg b "$bundesland" --arg k "$kreis" '.warnings[] | .[] | select(.state == $b) | select(.regionName == $k) | {start,"end",type,level,event,state,regionName,headline,description}')
+data=$(curl -s $url | cut -d '(' -f 2- | rev | cut -c 3- | rev | \
+jq --arg b "$bundesland" --arg k "$kreis" '.warnings[] | .[] | select(.state == $b) | select(.regionName == $k) | {start,"end",type,level,event,state,regionName,headline,description}')
 
 # Calc starttime and endtime from warnings (MESZ)
 start=$(echo $data | jq --argjson f "$fixtime" '.start/1000 + $f | strftime("%d-%m-%Y %H:%M")' | tr -d '"' )
