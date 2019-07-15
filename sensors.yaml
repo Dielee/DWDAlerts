@@ -1,4 +1,4 @@
-   - platform: mqtt
+  - platform: mqtt
     name: "weather_alert_start"
     state_topic: "weather/alerts"
     value_template: "{{ value_json.start }}"
