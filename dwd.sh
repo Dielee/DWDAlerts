@@ -1,5 +1,6 @@
-# Set own data here
 url="https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
+
+# Set own data here
 bundesland="Nordrhein-Westfalen"
 kreis="Kreis Wesel"
 fixtime=7200 #Difference to UTC in seconds
