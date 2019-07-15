@@ -1,0 +1,19 @@
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: glance
+            title: Wetterstation
+            entities:
+               - sensor.outside_tmp
+               - sensor.temp_state
+               - sensor.outside_hum
+               - sensor.outside_voltage
+               - sensor.outside_stat
+          - type: markdown
+            content: |
+               [[ if(sensor.weather_alert_level_raw != 0, "## ", " ") ]][[ sensor.weather_alert_level.state ]]
+               [[ sensor.weather_alert_info ]]
+
+               Von: [[ sensor.weather_alert_start.state ]] Uhr
+               Bis: [[ sensor.weather_alert_end.state ]] Uhr
+
+               [[ sensor.weather_alert_advanced_info_raw.state ]]
