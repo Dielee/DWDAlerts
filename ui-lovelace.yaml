@@ -1,3 +1,10 @@
+resources:
+  - url: /local/card-tools.js?track=true
+    type: js
+    
+  - url: /local/markdown-mod.js?v=1.0
+    type: module
+
       - type: custom:vertical-stack-in-card
         cards:
           - type: glance
