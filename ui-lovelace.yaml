@@ -17,10 +17,10 @@ resources:
                - sensor.outside_stat
           - type: markdown
             content: |
-               [[ if(sensor.weather_alert_level_raw != 0, "## ", "") ]][[ sensor.weather_alert_level.state ]]
+               [[ if(sensor.weather_alert_level != "", "## ", "") ]][[ sensor.weather_alert_level.state ]]
                [[ sensor.weather_alert_info ]]
 
-               [[ if(sensor.weather_alert_level_raw != 0, "Von:", "") ]] [[ sensor.weather_alert_start.state ]] [[ if(sensor.weather_alert_level_raw != 0, "Uhr", "") ]]
-               [[ if(sensor.weather_alert_level_raw != 0, "Bis:", "") ]] [[ sensor.weather_alert_end.state ]][[ if(sensor.weather_alert_level_raw != 0, "Uhr", "") ]]
+               [[ if(sensor.weather_alert_level != "", "Von:", "") ]] [[ sensor.weather_alert_start.state ]] [[ if(sensor.weather_alert_level != "", "Uhr", "") ]]
+               [[ if(sensor.weather_alert_level != "", "Bis:", "") ]] [[ sensor.weather_alert_end.state ]][[ if(sensor.weather_alert_level != "", "Uhr", "") ]]
 
                [[ sensor.weather_alert_advanced_info_raw.state ]]
