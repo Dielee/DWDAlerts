@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Set own data here
 url="https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
 bundesland="Nordrhein-Westfalen"
