@@ -4,8 +4,8 @@
 url="https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
 bundesland="Nordrhein-Westfalen"
 kreis="Kreis Wesel"
-fixtime=7200 #Difference to UTC in seconds
 brokerip="127.0.0.1"
+fixtime=7200 #Difference to UTC in seconds
 
 # Fetch data from DWD
 data=$(curl -s $url | cut -d '(' -f 2- | rev | cut -c 3- | rev | \
