@@ -5,6 +5,7 @@ url="https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
 bundesland="Nordrhein-Westfalen"
 kreis="Kreis Wesel"
 fixtime=7200 #Difference to UTC in seconds
+brokerip="127.0.0.1"
 
 # Fetch data from DWD
 data=$(curl -s $url | cut -d '(' -f 2- | rev | cut -c 3- | rev | \
@@ -37,10 +38,10 @@ fi
 if [ -z "$data" ]
 then
         data='{"type": 0, "level": "", "event": "", "state": "'"$bundesland"'", "regionName": "'"$kreis"'", "headline": "", "description": "", "start": "", "end": ""}'
-        mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$data" -r
+        mosquitto_pub -h $brokerip -t weather/alerts -m "$data" -r
         echo $data >> /home/homeassistant/dwd/dwd.log
 else
         data=$(echo $data | jq --arg l "$level" --arg ev "$event" --arg s "$start" --arg e "$end" '{type,state,regionName,headline,description} | . |= . + {"level": $l,"event": $ev,"start": $s, "end": $e}')
-        mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$data" -r
+        mosquitto_pub -h $brokerip -t weather/alerts -m "$data" -r
         echo $data >> /home/homeassistant/dwd/dwd.log
 fi
