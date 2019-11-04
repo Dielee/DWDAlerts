@@ -6,6 +6,7 @@ bundesland="Nordrhein-Westfalen"
 kreis="Kreis Wesel"
 fixtime=7200 #Difference to UTC in seconds
 date=$(date +'%d.%m.%Y %T')
+mqttbroker=127.0.0.1
 
 # Fetch data from DWD
 data=$(curl -s $url | cut -d '(' -f 2- | rev | cut -c 3- | rev | \
@@ -91,13 +92,13 @@ if [ -z "$data" ]
 then
 	out_data='{"type": "", "level1": "","level2":"", "event1": "", "event2": "", "state": "'"$bundesland"'", "regionName": "'"$kreis"'", "headline": "", "description1": "",
                    "description2": "", "start1": "","start2":"", "end1": "", "end2": ""}'
-        mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$out_data" -r
+        mosquitto_pub -h $mqttbroker -t weather/alerts -m "$out_data" -r
         echo $date $out_data >> /home/homeassistant/dwd/dwd.log
 else
         out_data=$(echo $data_out | jq --arg d2 "$description2" --arg d1 "$description1" --arg h "$headline" --arg l1 "$level1" --arg l2 "$level2" --arg ev1 "$event1" --arg ev2 "$event2" \
         --arg s2 "$start2" --arg s1 "$start1" --arg e1 "$end1" --arg e2 "$end2" \
         '{type,state,regionName} | . |= . + {"headline": $h, "description1": $d1, "description2": $d2, "level1": $l1,"level2": $l2, "event1": $ev1, "event2": $ev2, "start1": $s1, "start2": $s2, "end1": $e1, "end2": $e2}')
-        mosquitto_pub -h 127.0.0.1 -t weather/alerts -m "$out_data" -r
+        mosquitto_pub -h $mqttbroker -t weather/alerts -m "$out_data" -r
         echo $date $out_data >> /home/homeassistant/dwd/dwd.log
         echo $out_data > /home/homeassistant/dwd/last.json
 fi
