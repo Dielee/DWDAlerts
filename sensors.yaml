@@ -1,36 +1,61 @@
   - platform: mqtt
-    name: "weather_alert_start"
+    name: "weather_alert_start1"
     state_topic: "weather/alerts"
-    value_template: "{{ value_json.start }}"
+    value_template: "{{ value_json.start1 }}"
     qos: 1
 
   - platform: mqtt
-    name: "weather_alert_end"
+    name: "weather_alert_start2"
     state_topic: "weather/alerts"
-    value_template: "{{ value_json.end }}"
-    qos: 1
- 
-  - platform: mqtt
-    name: "weather_alert_type"
-    state_topic: "weather/alerts"
-    value_template: "{{ value_json.type }}"
+    value_template: "{{ value_json.start2 }}"
     qos: 1
 
   - platform: mqtt
-    name: "weather_alert_level"
+    name: "weather_alert_end1"
     state_topic: "weather/alerts"
-    value_template: "{{ value_json.level }}"
+    value_template: "{{ value_json.end1 }}"
     qos: 1
 
   - platform: mqtt
-    name: "weather_alert_info"
+    name: "weather_alert_end2"
     state_topic: "weather/alerts"
-    value_template: "{{ value_json.event }}"
+    value_template: "{{ value_json.end2 }}"
+    qos: 1
+
+- platform: mqtt
+    name: "weather_alert_level1"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.level1 }}"
     qos: 1
 
   - platform: mqtt
-    name: "weather_alert_advanced_info"
+    name: "weather_alert_level2"
     state_topic: "weather/alerts"
-    value_template: "{{ value_json.description }}"
+    value_template: "{{ value_json.level2 }}"
     qos: 1
-  
+
+  - platform: mqtt
+    name: "weather_alert_event1"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.event1 }}"
+    qos: 1
+
+  - platform: mqtt
+    name: "weather_alert_event2"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.event2 }}"
+    qos: 1
+
+  - platform: mqtt
+    name: "weather_alert_advanced_info_raw1"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.description1 }}"
+    qos: 1
+    icon: mdi:information
+
+  - platform: mqtt
+    name: "weather_alert_advanced_info_raw2"
+    state_topic: "weather/alerts"
+    value_template: "{{ value_json.description2 }}"
+    qos: 1
+    icon: mdi:information
