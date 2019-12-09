@@ -52,6 +52,20 @@ description2=$(echo ${description_array[2]} | tr -d '"')
 level1=${level_array[1]}
 level2=${level_array[2]}
 
+if [ ${#description1} -gt 255 ]
+then
+        description1=$(echo $description1 | cut -c 1-252)
+        description1="${description1}..."
+        echo $description1
+fi
+
+if [ ${#description2} -gt 255 ]
+then
+        description2=$(echo $description2 | cut -c 1-252)
+        description2="${description2}..."
+        echo $description2
+fi
+
 if [ "$level1" == "0" ]
 then
 	level1=""
